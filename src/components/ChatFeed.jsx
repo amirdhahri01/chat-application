@@ -1,9 +1,14 @@
 import MyMessage from "./MyMessage";
+
 import TheirMessage from "./TheirMessage";
+
 import MessageForm from "./MessageForm";
+
 const Chatfeed = (props) => {
   const { chats, activeChat, userName, messages } = props;
+
   const chat = chats && chats[activeChat];
+
   const renderReadReceipts = (message, isMyMessage) => {
     chat.people.map(
       (person, index) =>
@@ -24,7 +29,7 @@ const Chatfeed = (props) => {
     const keys = Object.keys(messages);
     return keys.map((key, index) => {
       const message = messages[key];
-      const lasMessageKey = index === 0 ? null : keys[index - 1];
+      const lastMessageKey = index === 0 ? null : keys[index - 1];
       const isMyMessage = userName === message.sender.userName;
       return (
         <div key={`msg_${index}`} style={{ width: "100%" }}>
@@ -34,7 +39,7 @@ const Chatfeed = (props) => {
             ) : (
               <TheirMessage
                 message={message}
-                lastMessage={messages[lasMessageKey]}
+                lastMessage={messages[lastMessageKey]}
               />
             )}
           </div>
