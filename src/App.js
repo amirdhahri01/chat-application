@@ -8,7 +8,7 @@ function App() {
     <LoginForm />;
   }
   return (
-    <div className="App">
+    <>
       <ChatEngine
         height="100vh"
         projectID="1ce2707a-58fb-4346-971c-7a8367f4f8df"
@@ -23,8 +23,7 @@ function App() {
           ).play();
         }}
       />
-    </div>
+    </>
   );
 }
-
 export default App;

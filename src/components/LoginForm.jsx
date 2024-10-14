@@ -1,10 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
+
 const projectID = "1ce2707a-58fb-4346-971c-7a8367f4f8df";
+
 const LoginForm = () => {
   const [username, setUsername] = useState("");
+
   const [password, setPassword] = useState("");
+
   const [error, setError] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const authObject = {
