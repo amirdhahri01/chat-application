@@ -3,12 +3,17 @@ import { sendMessage, isTyping } from "react-chat-engine";
 import { useState } from "react";
 
 const MessageForm = (props) => {
+  console.log(props);
+
   const [value, setValue] = useState("");
+
   const { chatID, creds } = props;
+
   const handleChange = (e) => {
     setValue(e.target.value);
     isTyping(props, chatID);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const text = value.trim();

@@ -10,18 +10,23 @@ const LoginForm = () => {
 
   const [error, setError] = useState("");
 
+  const url = "https://api.chatengine.io/users/";
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const authObject = {
-      username: username,
-      secrect: password,
-    };
     try {
-      await axios.post("https://api.chatengine.io/chats", authObject, {
-        headers: {
-          "Private-Key": PRIVATE_KEY,
+      await axios.post(
+        url,
+        {
+          username: username,
+          secrect: password,
         },
-      });
+        {
+          headers: {
+            "Private-Key": PRIVATE_KEY,
+          },
+        }
+      );
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
       window.location.reload();
