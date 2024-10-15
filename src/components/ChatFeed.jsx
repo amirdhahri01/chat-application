@@ -7,9 +7,6 @@ import MessageForm from "./MessageForm";
 const Chatfeed = (props) => {
   const { chats, activeChat, userName, messages } = props;
 
-  console.log("messages");
-  console.log(messages);
-
   const chat = chats && chats[activeChat];
 
   const renderReadReceipts = (message, isMyMessage) =>
