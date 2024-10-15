@@ -6,8 +6,8 @@ import MessageForm from "./MessageForm";
 
 const Chatfeed = (props) => {
   const { chats, activeChat, userName, messages } = props;
-  console.log("messages");
 
+  console.log("messages");
   console.log(messages);
 
   const chat = chats && chats[activeChat];
@@ -70,7 +70,7 @@ const Chatfeed = (props) => {
       <div className="chat-title-container">
         <div className="chat-title">{chat?.title}</div>
         <div className="chat-subtitle">
-          {chat.people.map((person) => `  ${person.person.username}  `)}
+          {chat.people.map((person) => ` ${person.person.username} `)}
         </div>
       </div>
       {renderMessages()}
