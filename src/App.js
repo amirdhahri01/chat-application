@@ -13,7 +13,7 @@ function App() {
         height="100vh"
         projectID="1ce2707a-58fb-4346-971c-7a8367f4f8df"
         userName="AmirDhahri"
-        userSecret="azerty123"
+        userSecret="123456789"
         renderChatFeed={(ChatAppProps) => {
           return <Chatfeed {...ChatAppProps} />;
         }}
