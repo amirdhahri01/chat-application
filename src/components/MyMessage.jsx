@@ -1,8 +1,4 @@
 const MyMessage = ({ message }) => {
-  console.log("hi");
-
-  console.log(message);
-
   if (message.attachments && message.attachments.length > 0) {
     return (
       <img
