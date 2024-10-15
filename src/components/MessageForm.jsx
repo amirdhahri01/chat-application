@@ -25,12 +25,7 @@ const MessageForm = (props) => {
   };
 
   const handleUpload = (event) => {
-    const files = Array.from(event.target.files);
-    console.log(files);
-
-    if (files.length > 0) {
-      sendMessage(creds, chatId, { text: "" });
-    }
+    sendMessage(creds, chatId, { files: event.target.files, text: "" });
   };
 
   return (
