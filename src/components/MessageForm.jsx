@@ -3,14 +3,13 @@ import { sendMessage, isTyping } from "react-chat-engine";
 import { useState } from "react";
 
 const MessageForm = (props) => {
-  console.log(props);
-
   const [value, setValue] = useState("");
 
   const { chatID, creds } = props;
 
   const handleChange = (e) => {
     setValue(e.target.value);
+    console.log("is typing");
     isTyping(props, chatID);
   };
 
@@ -18,12 +17,13 @@ const MessageForm = (props) => {
     e.preventDefault();
     const text = value.trim();
     if (text.length > 0) {
-      sendMessage(creds, chatID, { text });
+      sendMessage(creds, chatID, { text: text });
     }
     setValue("");
   };
+
   const handleUpload = (e) => {
-    sendMessage(creds, chatID, { fils: e.target.files, text: "" });
+    sendMessage(creds, chatID, { files: e.target.files, text: "" });
   };
   return (
     <form className="message-form" onSubmit={handleSubmit}>
@@ -43,11 +43,11 @@ const MessageForm = (props) => {
       <input
         type="file"
         multiple={false}
-        id={"upload"}
+        id="upload-button"
         style={{ display: "none" }}
         onChange={handleUpload.bind(this)}
       />
-      <button type="submit" className="send-button">
+      <button type="submit" className="send-button" onClick={handleSubmit}>
         <SendOutlined className="send-icon" />
       </button>
     </form>
