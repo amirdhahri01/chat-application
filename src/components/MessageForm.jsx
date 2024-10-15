@@ -6,13 +6,16 @@ import { useState } from "react";
 
 const MessageForm = (props) => {
   const [value, setValue] = useState("");
-
+  const [files, setFiles] = useState(null);
   const { chatId, creds } = props;
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
 
+  const handleUpload = (event) => {
+    setFiles(event.target.files);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -20,12 +23,12 @@ const MessageForm = (props) => {
 
     if (text.length > 0) {
       sendMessage(creds, chatId, { text });
+      setValue("");
     }
-    setValue("");
-  };
-
-  const handleUpload = (event) => {
-    sendMessage(creds, chatId, { files: event.target.files, text: "" });
+    if (files && files.length > 0) {
+      sendMessage(creds, chatId, { files: files, text: "" });
+      setFiles(null);
+    }
   };
 
   return (
@@ -35,7 +38,6 @@ const MessageForm = (props) => {
         placeholder="Send a message..."
         value={value}
         onChange={handleChange}
-        onSubmit={handleSubmit}
         onFocus={() => {
           isTyping(props, chatId);
         }}
@@ -50,7 +52,7 @@ const MessageForm = (props) => {
         multiple={false}
         id="upload-button"
         style={{ display: "none" }}
-        onChange={handleUpload.bind(this)}
+        onChange={handleUpload}
       />
       <button type="submit" className="send-button">
         <SendOutlined className="send-icon" />
