@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-const PRIVATE_KEY = "a198a56e-a112-47a3-abaf-f903ed216d34";
+const PROJECT_ID = "1ce2707a-58fb-4346-971c-7a8367f4f8df";
+const URL = "https://api.chatengine.io/chats/";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -10,23 +11,16 @@ const LoginForm = () => {
 
   const [error, setError] = useState("");
 
-  const url = "https://api.chatengine.io/users/";
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        url,
-        {
-          username: username,
-          secrect: password,
+      await axios.get(URL, {
+        headers: {
+          "Project-ID": PROJECT_ID,
+          "User-Name": username,
+          "User-Secret": password,
         },
-        {
-          headers: {
-            "Private-Key": PRIVATE_KEY,
-          },
-        }
-      );
+      });
       localStorage.setItem("username", username);
       localStorage.setItem("password", password);
       window.location.reload();

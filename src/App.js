@@ -5,7 +5,7 @@ import LoginForm from "./components/LoginForm";
 
 function App() {
   if (!localStorage.getItem("username")) {
-    <LoginForm />;
+    return <LoginForm />;
   }
   return (
     <>

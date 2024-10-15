@@ -4,31 +4,33 @@ import { useState } from "react";
 
 const MessageForm = (props) => {
   const [value, setValue] = useState("");
+  const { chatId, creds } = props;
 
-  const { chatID, creds } = props;
+  const handleChange = (event) => {
+    setValue(event.target.value);
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    console.log("is typing");
-    isTyping(props, chatID);
+    isTyping(props, chatId);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     const text = value.trim();
+
     if (text.length > 0) {
-      sendMessage(creds, chatID, { text: text });
+      sendMessage(creds, chatId, { text });
     }
+
     setValue("");
   };
 
-  const handleUpload = (e) => {
-    sendMessage(creds, chatID, { files: e.target.files, text: "" });
+  const handleUpload = (event) => {
+    sendMessage(creds, chatId, { files: event.target.files, text: "" });
   };
+
   return (
     <form className="message-form" onSubmit={handleSubmit}>
       <input
-        type="text"
         className="message-input"
         placeholder="Send a message..."
         value={value}
@@ -47,10 +49,11 @@ const MessageForm = (props) => {
         style={{ display: "none" }}
         onChange={handleUpload.bind(this)}
       />
-      <button type="submit" className="send-button" onClick={handleSubmit}>
+      <button type="submit" className="send-button">
         <SendOutlined className="send-icon" />
       </button>
     </form>
   );
 };
+
 export default MessageForm;
